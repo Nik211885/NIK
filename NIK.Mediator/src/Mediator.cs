@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using NIK.Mediator.Extensions;
 using NIK.Mediator.Interfaces;
+using NIK.Shared.Exceptions;
 
 namespace NIK.Mediator;
 

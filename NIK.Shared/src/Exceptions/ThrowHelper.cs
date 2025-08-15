@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using NIK.Mediator.Interfaces;
 
-namespace NIK.Mediator;
+namespace NIK.Shared.Exceptions;
 
 /// <summary>
 /// 
@@ -15,7 +14,7 @@ internal static class ThrowHelper
     /// <param name="message"></param>
     /// <typeparam name="T"></typeparam>
     /// <exception cref="ArgumentException"></exception>
-    public  static void ThrowIfArgumentNull<T>([NotNull]T? argument, string message)
+    public static void ThrowIfArgumentNull<T>([NotNull]T? argument, string message)
     {
         if (argument is null)
         {
@@ -48,5 +47,4 @@ internal static class ThrowHelper
     {
         throw new Exception(message);
     }
-    
 }
