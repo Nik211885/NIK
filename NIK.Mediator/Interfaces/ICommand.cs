@@ -6,7 +6,7 @@
 /// </summary>
 /// <typeparam name="TResponse"></typeparam>
 public interface ICommand<TResponse>
-    : IRequest<TResponse>, ICommand;
+    : IRequest<TResponse>;
 
 /// <summary>
 ///Defined for request change sources it is written operate in cqrs,

@@ -5,7 +5,7 @@
 /// and it is expected returning type is response, base type is iQuery
 /// </summary>
 /// <typeparam name="TResponse"></typeparam>
-public interface IQuery<TResponse> : IRequest<TResponse>, IQuery;
+public interface IQuery<TResponse> : IRequest<TResponse>;
 
 /// <summary>
 ///Defined for request read data sources in cqrs,

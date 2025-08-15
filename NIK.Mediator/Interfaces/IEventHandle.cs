@@ -2,7 +2,8 @@
 /// <summary>
 /// Action for event
 /// </summary>
-public interface IEventHandle
+public interface IEventHandle<in TEvent>
+    where TEvent : IEvent
 {
     /// <summary>
     ///     Handle for event type 
@@ -11,6 +12,5 @@ public interface IEventHandle
     /// <param name="cancellationToken">CancellationToken</param>
     /// <typeparam name="TEvent">Type for event</typeparam>
     /// <returns></returns>
-    Task Handle<TEvent>(TEvent @event, CancellationToken cancellationToken = default) 
-        where TEvent : IEvent;
+    Task Handle(TEvent @event, CancellationToken cancellationToken = default);
 }

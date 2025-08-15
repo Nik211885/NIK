@@ -5,7 +5,7 @@
 /// and expected returning type is response and base is iRequest usefully
 /// create pipeline before get to handle 
 /// </summary>
-public interface IRequest<TResponse> : IRequest;
+public interface IRequest<TResponse>;
 
 /// <summary>
 /// Mark to this is type of request for user send to

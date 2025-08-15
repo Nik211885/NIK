@@ -11,7 +11,7 @@ public delegate Task<TResponse> RequestHandleDelegate<TResponse>();
 /// <typeparam name="TRequest"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
 public interface IPipelineBehavior<in TRequest, TResponse>
-    where TRequest : IRequest<TResponse> 
+    where TRequest : notnull
 {
     /// <summary>
     /// Create pipeline before create handle
@@ -24,6 +24,3 @@ public interface IPipelineBehavior<in TRequest, TResponse>
         RequestHandleDelegate<TResponse> next,
         CancellationToken cancellationToken = default);
 }
-
-
-
