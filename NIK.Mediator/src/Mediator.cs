@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Channels;
 using Microsoft.Extensions.DependencyInjection;
 using NIK.Mediator.Extensions;
 using NIK.Mediator.Interfaces;
@@ -127,5 +128,35 @@ public class Mediator : IMediator
     public Task Publish<TEvent>(IReadOnlyList<TEvent> events, CancellationToken cancellationToken = default) where TEvent : IEvent
     {
         throw new NotImplementedException();
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="events"></param>
+    /// <param name="cancellationToken"></param>
+    /// <typeparam name="TEvent"></typeparam>
+    /// <exception cref="InvalidOperationException"></exception>
+    public async Task Dispatcher<TEvent>(IReadOnlyCollection<TEvent> events, CancellationToken cancellationToken = default) where TEvent : IEvent
+    {
+        var tasks = new List<Task>();
+
+        foreach (var e in events)
+        {
+            Type typeEvent = e.GetType();
+            var eventHandlers = _serviceProvider.GetServices(typeEvent);
+
+            foreach (var eh in eventHandlers)
+            {
+                MethodInfo? method = eh?.GetType().GetMethod("Handle");
+                if (method is null)
+                {
+                    continue;
+                }
+                var task = method.Invoke(eh, [e, cancellationToken]) as Task
+                           ?? throw new InvalidOperationException($"Handler must return Task. Method: {method.Name}");
+                tasks.Add(task);
+            }
+        }
+        await Task.WhenAll(tasks);
     }
 }

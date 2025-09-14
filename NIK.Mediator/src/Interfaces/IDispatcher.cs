@@ -3,7 +3,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface IDispatcherEventHandle
+public interface IDispatcher
 {
     /// <summary>
     /// 
@@ -12,6 +12,6 @@ public interface IDispatcherEventHandle
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TEvent"></typeparam>
     /// <returns></returns>
-    Task DispatcherAsync<TEvent>(IReadOnlyCollection<TEvent> @events, CancellationToken cancellationToken = default)
+    Task Dispatcher<TEvent>(IReadOnlyCollection<TEvent> @events, CancellationToken cancellationToken = default)
         where TEvent : IEvent;
 }

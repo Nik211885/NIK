@@ -44,6 +44,7 @@ public static class MediatorServiceCollectionExtensions
         services.TryAddScoped<ISender, Mediator>();
         services.TryAddScoped<IPublisher, Mediator>();
         services.TryAddScoped<IMediator, Mediator>();
+        services.TryAddScoped<IDispatcher, Mediator>();
         // Scan in assembly for configuration
         Parallel.ForEach(configuration.AssembliesRegister, assembly =>
         {
