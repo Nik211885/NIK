@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
    <ItemGroup>
     <Compile Include="..\..\NIK.Shared\src\Exceptions\**\*.cs" LinkBase="Shared"/>
